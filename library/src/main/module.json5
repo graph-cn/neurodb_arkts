@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "library",
+    "type": "har",
+    "description": "$string:shared_desc",
+    "deviceTypes": [
+      "phone",
+      "tablet"
+    ]
+  }
+}
