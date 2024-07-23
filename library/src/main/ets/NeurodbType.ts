@@ -1,3 +1,7 @@
+// Copyright (c) 2024- All neurodb_arkts authors. All rights reserved.
+//
+// This source code is licensed under Apache 2.0 License.
+
 export class NeurodbType {
   static RETURNDATA = 1;
   static SELECTDB = 2;

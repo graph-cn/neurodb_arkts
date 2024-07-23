@@ -1,12 +1,12 @@
 {
+  "license": "",
+  "devDependencies": {},
+  "author": "",
   "name": "entry",
-  "version": "1.0.0",
   "description": "Please describe the basic information.",
   "main": "",
-  "author": "",
-  "license": "",
+  "version": "1.0.0",
   "dependencies": {
-    "neurodb_arkts": "../library"
+    "@graph-cn/neurodb_arkts": "file:../library/build/default/outputs/default/library.har"
   }
 }
-

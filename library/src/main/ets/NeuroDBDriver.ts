@@ -1,3 +1,7 @@
+// Copyright (c) 2024- All neurodb_arkts authors. All rights reserved.
+//
+// This source code is licensed under Apache 2.0 License.
+
 import socket from '@ohos.net.socket';
 import { ColVal } from './ColVal';
 import { Link } from './Link';
@@ -11,19 +15,20 @@ import { NeurodbType } from './NeurodbType';
 export class NeuroDBDriver {
   socket: socket.TCPSocket;
   addr: socket.NetAddress;
+  timeout: number = 6000
   onmessage: Promise<any>;
 
-  constructor(addr?: socket.NetAddress) {
+  constructor(addr: socket.NetAddress, timeout?: number) {
     // ip 使用数据库所在机器的ip
-    this.addr = addr ?? {address: '172.20.0.234', port: 8839, family: 1};
+    this.addr = addr;
+    this.timeout = timeout ?? this.timeout;
   }
 
   async open() {
     let _ = this;
     let tcp = socket.constructTCPSocketInstance();
-    // FIXME 暂用模拟器ip，实际使用时从 API 获取动态 ip
-    await tcp.bind({address: '10.0.2.15'})
-    await tcp.connect({ address: _.addr, timeout: 6000});
+    await tcp.bind({address: 'localhost'})
+    await tcp.connect({ address: _.addr, timeout: this.timeout});
     console.log('connect success')
     _.socket = tcp;
   }
@@ -99,7 +104,10 @@ export class NeuroDBDriver {
         break;
       case '#': // 返回的是包含正常消息的消息数据包
         rs.status = ResultStatus.PARSER_OK;
-        rs.msg = readLine(buf, cur)
+        let msgLen = rs.msg = readLine(buf, cur)
+        let len = parseInt(msgLen);
+        rs.msg = readString(buf, cur[0], len)
+        cur[0] = cur[0] + len;
         break;
       case '*': // 返回的是图查询结果数据包
         let line: string = readLine(buf, cur);
@@ -334,16 +342,16 @@ function readLine(body: buffer.Buffer, cur: number[]) : string {
       break;
     }
   }
-  return builder.replace('\r\n', ' ');
+  return builder.replace('\r\n', '');
 }
 
-export function resolveIP(ip: number): string {
-  if (ip < 0 || ip > 0xFFFFFFFF) {
-    throw ('The number is not normal!');
-  }
-  return (ip >>> 24) + '.' + (ip >> 16 & 0xFF) + '.' + (ip >> 8 & 0xFF) + '.' + (ip & 0xFF);
+function readString(buf: buffer.Buffer, offset: number, length: number): string {
+  let sub = new Array(length)
+  let subBuffer = buffer.from(sub)
+  buf.copy(subBuffer, 0, offset, offset + length)
+  let subStr = subBuffer.toString('utf8')
+  return subStr
 }
-
 
 class StringCur {
   s: buffer.Buffer;
@@ -371,28 +379,5 @@ class StringCur {
     let type = this.s.readInt8(this.cur)
     this.cur ++;
     return type;
-  }
-
-  getUTF8StrIndex(byteSize, skip) : number {
-    let charCode, tempByteIndex = this.byteIndex, tempCur = this.cur;
-    while (this.cur < this.s.length) {
-      charCode = this.s[this.cur];
-      if (charCode <= 0x007f) {
-        tempByteIndex += 1;
-      } else if (charCode <= 0x07ff) {
-        tempByteIndex += 2;
-      } else if (charCode <= 0xffff) {
-        tempByteIndex += 3;
-      } else {
-        tempByteIndex += 4;
-        this.cur++;
-      }
-      this.cur ++;
-      if (tempByteIndex >= this.byteIndex + byteSize) {
-        break;
-      }
-    }
-    this.byteIndex = tempByteIndex;
-    return skip ? this.cur : tempCur
   }
 }

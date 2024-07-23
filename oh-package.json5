@@ -1,13 +1,11 @@
 {
-  "name": "neurodb_arkts",
-  "version": "1.0.0",
-  "description": "Please describe the basic information.",
-  "main": "",
-  "author": "",
   "license": "",
-  "dependencies": {
-  },
   "devDependencies": {
     "@ohos/hypium": "1.0.6"
-  }
+  },
+  "author": "大叶",
+  "name": "neurodb_arkts",
+  "description": "连接到NeoroDB的数据库驱动。可执行Cypher脚本对图数据库进行操作。",
+  "version": "1.0.0",
+  "dependencies": {}
 }

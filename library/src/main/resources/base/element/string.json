@@ -2,7 +2,7 @@
   "string": [
     {
       "name": "shared_desc",
-      "value": "description"
+      "value": "连接到NeoroDB的数据库驱动。可执行Cypher脚本对图数据库进行操作。"
     }
   ]
 }
