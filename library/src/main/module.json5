@@ -1,12 +1,12 @@
 {
   "module": {
     "name": "library",
-    "type": "shared",
-    "description": "$string:shared_desc",
+    "type": "har",
     "deviceTypes": [
-      "phone",
-      "tablet"
-    ],
-    "deliveryWithInstall": true
+      "default",
+      "tablet",
+      "2in1",
+      "car"
+    ]
   }
 }

@@ -18,15 +18,15 @@ struct Index {
         .margin(10)
         .flexGrow(1)
       Button('运行', { type: ButtonType.Capsule, stateEffect: true }).backgroundColor(0x317aff).width(90)
-      .onClick(async () => {
-        try {
-          let rs: ResultSet = await this.driver.executeQuery(this.script)
-          this.message = JSON.stringify(rs)
-          console.info(this.message)
-        } catch (e) {
-          console.error(e.msg);
-        }
-      })
+        .onClick(async () => {
+          try {
+            let rs: ResultSet = await this.driver.executeQuery(this.script)
+            this.message = JSON.stringify(rs)
+            console.info(this.message)
+          } catch (e) {
+            console.error(e.msg);
+          }
+        })
       Scroll() {
         Text(this.message)
           .fontSize(30)

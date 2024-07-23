@@ -10,7 +10,7 @@
     "图数据库"
   ],
   "name": "@graph-cn/neurodb_arkts",
-  "description": "连接到NeoroDB的数据库驱动。可执行Cypher脚本对图数据库进行操作。",
+  "description": "连接到NeuroDB的数据库驱动。可执行Cypher脚本对图数据库进行操作。",
   "main": "index.ts",
   "repository": "https://atomgit.com/graph-cn/neurodb_arkts",
   "version": "1.0.0",

@@ -1,5 +1,5 @@
-import NeuroDBDriverTest from './NeuroDBDriver.test'
+import abilityTest from './Ability.test';
 
 export default function testsuite() {
-  NeuroDBDriverTest()
+  abilityTest();
 }

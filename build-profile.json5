@@ -1,25 +1,20 @@
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\Corvu\\.ohos\\config\\openharmony\\auto_ohos_default_neurodb_arkts_ltd.dudu.graph_cn.neurodb_arkts.cer",
-          "storePassword": "0000001BA7F0DFC2266356FF6F5E8663C15926EEDE05BF519EEC828B489DD949710E2B9B4509946FBC4EC3",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B78767EDE8362699530876E586FFA3264895D0D372C93F10B1F6F2875B50573F622CEE03BA6E099",
-          "profile": "C:\\Users\\Corvu\\.ohos\\config\\openharmony\\auto_ohos_default_neurodb_arkts_ltd.dudu.graph_cn.neurodb_arkts.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\Corvu\\.ohos\\config\\openharmony\\auto_ohos_default_neurodb_arkts_ltd.dudu.graph_cn.neurodb_arkts.p12"
-        }
-      }
-    ],
-    "compileSdkVersion": 9,
-    "compatibleSdkVersion": 9,
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
+        "compatibleSdkVersion": "5.0.0(12)",
+        "runtimeOS": "HarmonyOS",
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
       }
     ]
   },
@@ -39,14 +34,6 @@
     {
       "name": "library",
       "srcPath": "./library",
-      "targets": [
-        {
-          "name": "default",
-          "applyToProducts": [
-            "default"
-          ]
-        }
-      ]
     }
   ]
 }
