@@ -24,7 +24,7 @@ struct Index {
             this.message = JSON.stringify(rs)
             console.info(this.message)
           } catch (e) {
-            console.error(e.msg);
+            console.error(e);
           }
         })
       Scroll() {

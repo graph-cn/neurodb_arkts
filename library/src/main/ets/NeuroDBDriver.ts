@@ -27,7 +27,6 @@ export class NeuroDBDriver {
   async open() {
     let _ = this;
     let tcp = socket.constructTCPSocketInstance();
-    await tcp.bind({address: 'localhost'})
     await tcp.connect({ address: _.addr, timeout: this.timeout});
     console.log('connect success')
     _.socket = tcp;
@@ -124,7 +123,7 @@ export class NeuroDBDriver {
 
         if (rs.results > 0) {
           let bodyLen = parseInt(head[9])
-          buf.subarray(cur[0], cur[0] + bodyLen)
+          buf = buf.subarray(cur[0], cur[0] + bodyLen)
           let recordSet: RecordSet = this.deserializeRecordSet(buf)
           rs.recordSet = recordSet;
         }
