@@ -1,5 +1,5 @@
 
-<h1 align="center"> Neurodb Dart Driver </h1>
+<h1 align="center"> NeuroDB ArkTS Driver </h1>
 <p align="center">
   <a title="三方库" href="https://ohpm.openharmony.cn/#/cn/detail/@graph-cn%2Fneurodb_arkts" >
       <img src="https://img.shields.io/badge/三方库-v1.0.0-red?style=popout" />
